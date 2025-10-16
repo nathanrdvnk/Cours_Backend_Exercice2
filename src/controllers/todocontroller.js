@@ -4,7 +4,7 @@ const todo = new Todo();
 
 export default class TodoController {
   static list(req, res) {
-    res.jsnon(todo.getAll());
+    res.json(todo.getAll());
   }
 
   static add(req, res) {
