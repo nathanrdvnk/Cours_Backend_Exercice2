@@ -1,24 +1,18 @@
+import pool from '../config.db/db.js';
+
 export default class Todo {
-  constructor() {
-    this.todos = [];
-    this.id = 1;
+  async getAll() {
+    const result = await pool.query('SELECT * FROM todos ORDER BY id');
+    return result.rows;
   }
 
-  getAll() {
-    return this.todos;
+  async addTask(title) {
+    const result = await pool.query('INSERT INTO todos (title) VALUES ($1) RETURNING *', [title]);
+    return result.rows[0];
   }
 
-  addTask(title) {
-    const newTask = { id: this.id++, title, done: false };
-    this.todos.push(newTask);
-    return newTask;
-  }
-
-  deleteTask(id) {
-    const index = this.todos.findIndex(task => task.id === id);
-    if (index !== -1) {
-      this.todos.splice(index, 1)[0];
-    }
-    return null;
+  async deleteTask(id) {
+    const result = await pool.query('DELETE FROM todos WHERE id = $1 RETURNING *', [id]);
+    return result.rows[0];
   }
 }
