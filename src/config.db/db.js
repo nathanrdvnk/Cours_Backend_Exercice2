@@ -1,5 +1,9 @@
-require('dotenv').config();
-const { Pool } = require('pg');
+import dotenv from 'dotenv';
+import pkg from 'pg';
+
+dotenv.config();
+
+const { Pool } = pkg;
 
 const pool = new Pool({
   host: process.env.DB_HOST,
@@ -13,4 +17,4 @@ pool.connect()
   .then(() => console.log('Connexion à la BDD'))
   .catch(err => console.error('Erreur de connexion', err));
 
-module.exports = pool;
+export default pool;
