@@ -1,0 +1,16 @@
+GET http://localhost:3000/functions
+
+###
+POST http://localhost:3000/functions
+Content-Type: application/json
+
+{
+    "name": "Nathan"
+}
+
+###
+GET http://localhost:3000/functions/6907abf6922a4e93ea0c6a21
+
+###
+DELETE http://localhost:3000/functions/6907abf6922a4e93ea0c6a21
+
