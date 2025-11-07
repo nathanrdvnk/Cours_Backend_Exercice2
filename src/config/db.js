@@ -23,7 +23,6 @@ async function connectPostgreSQL() {
     });
     try {
         await client.connect();
-        console.log('PostgreSQL Server Started');
         return client;
     } catch (err) {
         console.error('Erreur PostgreSQL :', err.message);
