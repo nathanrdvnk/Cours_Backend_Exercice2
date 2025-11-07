@@ -2,7 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
-
+/*
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+ */
 const { connectMongoDB, connectPostgreSQL } = require('./src/config/db');
 
 //Middleware
@@ -48,3 +52,6 @@ if (mode === 'postgres') {
   })();
 }
 app.listen(3000, () => console.log(`Server started with : ${mode.toUpperCase()}`));
+
+
+
